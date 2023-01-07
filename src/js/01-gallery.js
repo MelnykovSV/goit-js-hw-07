@@ -1,36 +1,41 @@
 import { galleryItems } from './gallery-items.js';
-// import * as basicLightbox from 'basiclightbox';
-// Change code below this line
-
-console.log(galleryItems);
 
 const gallery = document.querySelector('.gallery');
-
+//  ==========================MARKUP CREACTION==============================
 const markup = galleryItems
   .map((ele, i, arr) => {
-    return `<div class="gallery__item"><a class="gallery__link"><img class="gallery__image" src="${ele.preview}" alt="${ele.description}"></a></div>`;
+    return `<div class="gallery__item"><a class="gallery__link" href = "${ele.original}"><img class="gallery__image" src="${ele.preview}" alt="${ele.description}" data-source="${ele.original}"></a></div>`;
   })
   .join('');
 
 gallery.insertAdjacentHTML('beforeend', markup);
 
+//  ==========================EVENTS HANDLING==============================
+
 gallery.addEventListener('click', e => {
-  console.log(
-    galleryItems.find(ele => {
-      return ele.preview === e.target.src;
-    }).original
+  e.preventDefault();
+
+  //  modal opening/closing
+
+  const instance = basicLightbox.create(
+    `
+      <div>
+          <div class="modal" style="max-width:1280px">
+            <img src="${e.target.dataset.source}" alt="${e.target.alt}" style="width: 100%">
+          </div>
+          </div>
+      `
   );
+  instance.show();
+
+  //  modal closing with ESC
+
+  function galleryKeyDownHandler(e) {
+    if (e.code === 'Escape') {
+      instance.close();
+      document.removeEventListener('keydown', galleryKeyDownHandler);
+    }
+  }
+
+  document.addEventListener('keydown', galleryKeyDownHandler);
 });
-// const basicLightbox = require('basiclightbox');
-// import * as basicLightbox from 'basiclightbox';
-
-const instance = basicLightbox.create(`
-    <div class="modal">
-        <p>
-            Your first lightbox with just a few lines of code.
-            Yes, it's really that simple.
-        </p>
-    </div>
-`);
-
-instance.show();

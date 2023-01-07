@@ -42,3 +42,14 @@
 .gallery__link:hover {
   cursor: zoom-in;
 }
+
+.basicLightbox__placeholder {
+  pointer-events: none;
+}
+
+.BFG {
+  position: absolute;
+  z-index: 100;
+  font-size: 60px;
+  color: red;
+}
