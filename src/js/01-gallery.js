@@ -3,7 +3,7 @@ import { galleryItems } from './gallery-items.js';
 const gallery = document.querySelector('.gallery');
 //  ==========================MARKUP CREACTION==============================
 const markup = galleryItems
-  .map((ele, i, arr) => {
+  .map(ele => {
     return `<div class="gallery__item"><a class="gallery__link" href = "${ele.original}"><img class="gallery__image" src="${ele.preview}" alt="${ele.description}" data-source="${ele.original}"></a></div>`;
   })
   .join('');
