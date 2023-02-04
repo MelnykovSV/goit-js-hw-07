@@ -1,7 +1,5 @@
 import { galleryItems } from './gallery-items.js';
 
-// Change code below this line
-
 const gallery = document.querySelector('.gallery');
 //  ==========================MARKUP CREACTION==============================
 const markup = galleryItems
@@ -12,7 +10,7 @@ const markup = galleryItems
 
 gallery.insertAdjacentHTML('beforeend', markup);
 
-// //  ==========================EVENTS HANDLING==============================
+// //  ==========================GALLERY==============================
 
 var $gallery = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',

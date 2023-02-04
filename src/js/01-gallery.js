@@ -27,7 +27,6 @@ gallery.addEventListener('click', e => {
       `,
     {
       onClose: () => {
-        console.log('instanse is closed');
         document.removeEventListener('keydown', galleryKeyDownHandler);
       },
     }
