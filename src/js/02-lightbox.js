@@ -1,4 +1,5 @@
 import { galleryItems } from './gallery-items.js';
+
 // Change code below this line
 
 const gallery = document.querySelector('.gallery');
@@ -17,13 +18,3 @@ var $gallery = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
-
-// $gallery.options.captionsType = 'text';
-
-// $gallery.options.close = false;
-
-// $gallery.options.captionsData = 'SHOW ME!';
-
-// $gallery.options.captionsPosition = 'top';
-
-// console.log($gallery);

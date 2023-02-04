@@ -24,7 +24,13 @@ gallery.addEventListener('click', e => {
             <img src="${e.target.dataset.source}" alt="${e.target.alt}" style="width: 100%">
           </div>
           </div>
-      `
+      `,
+    {
+      onClose: () => {
+        console.log('instanse is closed');
+        document.removeEventListener('keydown', galleryKeyDownHandler);
+      },
+    }
   );
   instance.show();
 
@@ -33,7 +39,6 @@ gallery.addEventListener('click', e => {
   function galleryKeyDownHandler(e) {
     if (e.code === 'Escape') {
       instance.close();
-      document.removeEventListener('keydown', galleryKeyDownHandler);
     }
   }
 
