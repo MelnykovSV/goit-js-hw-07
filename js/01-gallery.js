@@ -1,18 +1,18 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 
-const gallery = document.querySelector('.gallery');
+const gallery = document.querySelector(".gallery");
 //  ==========================MARKUP CREACTION==============================
 const markup = galleryItems
-  .map(ele => {
+  .map((ele) => {
     return `<div class="gallery__item"><a class="gallery__link" href = "${ele.original}"><img class="gallery__image" src="${ele.preview}" alt="${ele.description}" data-source="${ele.original}"></a></div>`;
   })
-  .join('');
+  .join("");
 
-gallery.insertAdjacentHTML('beforeend', markup);
+gallery.insertAdjacentHTML("beforeend", markup);
 
 //  ==========================EVENTS HANDLING==============================
 
-gallery.addEventListener('click', e => {
+gallery.addEventListener("click", (e) => {
   e.preventDefault();
 
   //  modal opening/closing
@@ -20,14 +20,14 @@ gallery.addEventListener('click', e => {
   const instance = basicLightbox.create(
     `
       <div>
-          <div class="modal" style="max-width:1280px">
-            <img src="${e.target.dataset.source}" alt="${e.target.alt}" style="width: 100%">
+          <div class="modal">
+            <img src="${e.target.dataset.source}" alt="${e.target.alt}" class="modal-img">
           </div>
           </div>
       `,
     {
       onClose: () => {
-        document.removeEventListener('keydown', galleryKeyDownHandler);
+        document.removeEventListener("keydown", galleryKeyDownHandler);
       },
     }
   );
@@ -36,10 +36,10 @@ gallery.addEventListener('click', e => {
   //  modal closing with ESC
 
   function galleryKeyDownHandler(e) {
-    if (e.code === 'Escape') {
+    if (e.code === "Escape") {
       instance.close();
     }
   }
 
-  document.addEventListener('keydown', galleryKeyDownHandler);
+  document.addEventListener("keydown", galleryKeyDownHandler);
 });
