@@ -15,6 +15,10 @@ gallery.insertAdjacentHTML("beforeend", markup);
 gallery.addEventListener("click", (e) => {
   e.preventDefault();
 
+  if (!e.target.classList.contains("gallery__image")) {
+    return;
+  }
+
   //  modal opening/closing
 
   const instance = basicLightbox.create(
@@ -29,6 +33,9 @@ gallery.addEventListener("click", (e) => {
       onClose: () => {
         document.removeEventListener("keydown", galleryKeyDownHandler);
       },
+      onShow: () => {
+        document.addEventListener("keydown", galleryKeyDownHandler);
+      },
     }
   );
   instance.show();
@@ -38,8 +45,7 @@ gallery.addEventListener("click", (e) => {
   function galleryKeyDownHandler(e) {
     if (e.code === "Escape") {
       instance.close();
+      console.log("im working");
     }
   }
-
-  document.addEventListener("keydown", galleryKeyDownHandler);
 });
